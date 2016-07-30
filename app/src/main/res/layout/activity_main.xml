@@ -1,0 +1,375 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    >
+    <FrameLayout
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titleSize">
+        <ImageView
+            android:id="@+id/drawer_indicator"
+            android:layout_width="@dimen/titleSize"
+            android:layout_height="@dimen/titleSize"
+            android:scaleType="centerInside"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_gravity="start"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/default_text"
+                android:text="@string/app_name"
+                android:layout_gravity="center_vertical|right"
+                android:id="@+id/current_info"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:id="@+id/refresh"
+                android:layout_gravity="right|center_vertical"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@mipmap/ic_refresh"
+                android:padding="@dimen/default_refresh"
+                />
+        </LinearLayout>
+
+    </FrameLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/parentView">
+
+                <mynim.is.where.oh.com.whereismynim.ParallaxScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:id = "@+id/pscroll"
+                    android:layout_height="match_parent"
+                    app:parallax_factor="1.9"
+                    tools:context=".MainActivity" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/parallex">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:src="@drawable/icon_up"
+                                android:layout_marginBottom="60dp"
+                                android:id="@+id/dirin" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Loading..."
+                                        android:id="@+id/Me"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/default_text_large" />
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/icon_heart"
+                                        android:layout_margin="@dimen/default_margin" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Loading..."
+                                        android:id="@+id/You"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/default_text_large" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Loading..."
+                                    android:id="@+id/batStatus"
+                                    android:layout_gravity="center"
+                                    android:gravity="center_horizontal"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/default_text" />
+
+                                <TextView
+                                    android:layout_width="130dp"
+                                    android:layout_height="130dp"
+                                    android:text="Loading..."
+                                    android:id="@+id/Distance"
+                                    android:layout_gravity="center"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:textColor="@color/white"
+                                    android:layout_marginTop = "50dp"
+                                    android:background="@drawable/circle"
+                                    android:textSize="23dp"
+                                    android:textIsSelectable="false" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="네트워크를 통해 계산된 위치로, \n실제 위치와 차이가 날 수 있습니다."
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="15dp"
+                                    android:textColor="@color/white"
+                                    android:gravity="center_horizontal"
+                                    android:textSize="@dimen/default_text" />
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/scroller"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="0dp"
+                            android:orientation="vertical" >
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/default_margin">
+                                <fragment
+                                    android:id="@+id/map"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    class="com.google.android.gms.maps.MapFragment"
+                                    tools:layout="@android:layout/select_dialog_singlechoice" />
+
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/map_overlap"
+                                    android:gravity="center_vertical"
+                                    android:background="@color/transparent_gray"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="현재 위치"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:textSize="@dimen/default_text_large"
+                                        android:textColor="@color/white"
+                                        android:layout_marginLeft="@dimen/default_margin" />
+
+                                    <android.support.v7.widget.AppCompatButton
+                                        style="@style/Widget.AppCompat.Button.Borderless"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="크게보기"
+                                        android:background="?selectableItemBackgroundBorderless"
+                                        android:textColor="@color/white"
+                                        android:id="@+id/bt_magnify"
+                                        android:layout_gravity="center_vertical|right" />
+                                </FrameLayout>
+                            </FrameLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </mynim.is.where.oh.com.whereismynim.ParallaxScrollView>
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/banner_ad_unit_id"
+                    android:layout_gravity="center_horizontal|bottom"
+                    >
+                </com.google.android.gms.ads.AdView>
+
+            </FrameLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:layout_width="240dp"
+            android:layout_height="match_parent">
+
+            <FrameLayout android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/colorPrimaryMid"
+                >
+
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/external"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:background="@color/transparent_gray"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/profile_pic"
+                        android:layout_marginLeft="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:id="@+id/user_name"
+                            android:textSize="@dimen/default_text_large"
+                            android:layout_margin="@dimen/default_margin"
+                            android:textColor="#FFFFFF" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Loading..."
+                        android:id="@+id/user_id"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginLeft="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:textSize="@dimen/default_text" />
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="fill_parent"
+                android:background="@color/dark"
+                android:orientation="vertical">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent" android:layout_height="fill_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <ImageView
+                                android:layout_width="@dimen/iconSize"
+                                android:layout_height="@dimen/iconSize"
+                                android:src="@drawable/icon_person"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/default_refresh" />
+                            <android.support.v7.widget.AppCompatButton
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="내 프로필"
+                                android:textColor="@color/white"
+                                android:id="@+id/bt_profile"
+                                android:gravity="left|center"
+                                android:padding="10dp" />
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <ImageView
+                                android:layout_width="@dimen/iconSize"
+                                android:layout_height="@dimen/iconSize"
+                                android:src="@drawable/icon_gear"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/default_refresh" />
+
+                            <android.support.v7.widget.AppCompatButton
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="설정"
+                                android:textColor="@color/white"
+                                android:id="@+id/bt_setting"
+                                android:gravity="left|center"
+                                android:padding="10dp" />
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <ImageView
+                                android:layout_width="@dimen/iconSize"
+                                android:layout_height="@dimen/iconSize"
+                                android:src="@drawable/icon_logout"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/default_refresh" />
+
+                            <android.support.v7.widget.AppCompatButton
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="로그아웃"
+                                android:id="@+id/bt_logout"
+                                android:gravity="left|center"
+                                android:padding="10dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

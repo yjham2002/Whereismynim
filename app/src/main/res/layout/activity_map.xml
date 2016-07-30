@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment"
+        tools:layout="@android:layout/select_dialog_singlechoice" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="@color/transparent_gray">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="현재 위치"
+                android:layout_gravity="left|center_vertical"
+                android:textSize="@dimen/default_text_large"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/default_margin" />
+
+            <android.support.v7.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닫기"
+                android:background="?selectableItemBackgroundBorderless"
+                android:textColor="@color/white"
+                android:id="@+id/bt_close"
+                android:layout_gravity="center_vertical|right" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="최근 업데이트 시간"
+            android:id="@+id/updateInfo"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:textSize="@dimen/default_text"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="데이터를 불러오는 중..."
+            android:id="@+id/geoInfo"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:textSize="@dimen/default_text"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</FrameLayout>

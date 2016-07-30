@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연결 정보"
+            android:textColor="@color/jet"
+            android:textSize="@dimen/default_text_large" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="상대방 이름"
+        android:id="@+id/pro_pname"
+        android:textColor="@color/dark"
+        android:padding="@dimen/default_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        android:textSize="@dimen/default_text_mid" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최근 위치 업데이트"
+        android:id="@+id/condate"
+        android:textColor="@color/dark"
+        android:padding="@dimen/default_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        android:textSize="@dimen/default_text_mid" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="위치 자동 기록 동의 : 허용"
+        android:id="@+id/pr_acc"
+        android:textColor="@color/dark"
+        android:padding="@dimen/default_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        android:textSize="@dimen/default_text_mid" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="위치 자동 기록 주기 : 3 시간"
+        android:id="@+id/pr_auto"
+        android:textColor="@color/dark"
+        android:padding="@dimen/default_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        android:textSize="@dimen/default_text_mid" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알림 표시 여부 : 허용"
+        android:id="@+id/pr_noti"
+        android:textColor="@color/dark"
+        android:padding="@dimen/default_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        android:textSize="@dimen/default_text_mid" />
+
+</LinearLayout>
+

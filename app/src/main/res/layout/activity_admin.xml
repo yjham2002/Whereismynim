@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo" />
+
+        <!--  Name Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="관리자 모드"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/default_text_large"
+            android:textColor="@color/white" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/admin_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="ID"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/admin_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="TITLE" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Mobile Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/admin_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="MESSAGE" />
+        </android.support.design.widget.TextInputLayout>
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"></android.support.design.widget.TextInputLayout>
+
+        <!-- Password Confirm Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"></android.support.design.widget.TextInputLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/admin_send"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="SEND"
+            android:layout_marginTop="@dimen/default_margin" />
+
+    </LinearLayout>
+</ScrollView>

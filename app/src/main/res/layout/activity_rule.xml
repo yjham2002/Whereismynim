@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="회원가입 약관"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/default_margin"
+            android:textSize="18dp"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:background="@color/white"
+            android:textColor="@color/jet"
+            android:text="@string/rule"
+            android:textSize="10dp"
+            android:padding="10dp" />
+
+        <android.support.v7.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/close"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:textColor="@color/white"
+            android:text="약관을 모두 읽었으며 가입을 계속합니다."
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</ScrollView>

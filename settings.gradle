@@ -1,0 +1,1 @@
+include ':app', ':cdec', ':picasso-2.5.2'

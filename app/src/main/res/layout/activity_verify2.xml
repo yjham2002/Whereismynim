@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/iv"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/reqer_info"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:gravity="center" />
+
+            <android.support.v7.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:id="@+id/request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_margin="@dimen/default_margin"
+                android:textColor="@color/white"
+                android:text="요청 취소하기"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

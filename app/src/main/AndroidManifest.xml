@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mynim.is.where.oh.com.whereismynim" >
+
+    <permission
+        android:name="mynim.is.where.oh.com.whereismynim.locationapi.maps.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="mynim.is.where.oh.com.whereismynim.locationapi.maps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission android:name="mynim.is.where.oh.com.whereismynim.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="mynim.is.where.oh.com.whereismynim.permission.C2D_MESSAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <receiver android:name=".AlarmReceiver" android:process=":remote" />
+        <activity android:name=".IntroActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ProfileActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".SettingActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".mapActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".VerifyActivity" />
+        <activity android:name=".RequestActivity" />
+        <activity android:name=".RuleActivity" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/MapKey" />
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.kweonminjun.tfk" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="mynim.is.where.oh.com.whereismynim.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="mynim.is.where.oh.com.whereismynim.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="mynim.is.where.oh.com.whereismynim.RegistrationIntentService"
+            android:exported="false">
+        </service>
+
+    </application>
+
+</manifest>

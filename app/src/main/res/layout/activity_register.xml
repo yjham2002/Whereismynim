@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo" />
+
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textCapWords"
+                android:hint="성명" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textEmailAddress"
+                android:hint="이메일" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Mobile Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="휴대전화"
+                android:inputType="phone" />
+        </android.support.design.widget.TextInputLayout>
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:hint="패스워드"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Confirm Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_passwordc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:hint="패스워드 확인"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="약관에 동의"
+                android:id="@+id/acceptRule"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical" />
+
+            <android.support.v7.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="약관 보기"
+                android:id="@+id/bt_show"
+                android:textSize="12dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/bt_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Create"
+            android:layout_marginTop="@dimen/default_margin" />
+
+        <android.support.v7.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/bt_link_login"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:textColor="@color/white"
+            android:text="@string/registered"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</ScrollView>
