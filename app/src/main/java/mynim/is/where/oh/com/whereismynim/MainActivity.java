@@ -68,6 +68,7 @@ import java.util.Locale;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
+    public static boolean isRun = false;
     public static AlarmManager mAlarmMgr;
     private static final LatLng SEOUL = new LatLng(37.6, 127);
     public static LatLng now, nowYou;
@@ -79,7 +80,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private TextView user_name_pane, user_id_pane, current_pane, Couple_me, Couple_you, batStatus, distanceStat;
     private ImageView refresh, profile, director,circlepic;
     private FrameLayout titlebar, parentView;
-    private Button bt_profile, bt_setting, bt_logout, bt_mag;
+    private Button bt_profile, bt_setting, bt_logout, bt_mag, bt_chat;
 
     // SCROLL VIEW RELATED DEC START
     private LinearLayout scroller;
@@ -169,7 +170,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 refresh.startAnimation(animset);
                 new Communicator().getHttp(AddInfo.URL_FORCE_LOC + part_key, new Handler() {});
                 break;
-
+            case R.id.bt_chat:
+                Intent chatIntent = new Intent(this, ChatActivity.class);
+                startActivity(chatIntent);
+                overridePendingTransition(R.anim.push_in, R.anim.push_out);
+                break;
             default: break;
         }
     }
@@ -274,6 +279,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         bt_setting = (Button)findViewById(R.id.bt_setting);
         bt_logout = (Button)findViewById(R.id.bt_logout);
         bt_mag = (Button)findViewById(R.id.bt_magnify);
+        bt_chat = (Button)findViewById(R.id.bt_chat);
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
@@ -294,6 +300,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         bt_setting.setOnClickListener(this);
         bt_logout.setOnClickListener(this);
         bt_mag.setOnClickListener(this);
+        bt_chat.setOnClickListener(this);
 
         animset = new AnimationSet(false);
         Animation anim1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anim);

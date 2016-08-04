@@ -45,7 +45,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 prefEditor.commit();
                 break;
             case R.id.set_cycle:
-                //prefEditor.putInt("ctime", 3);
+                showToast("준비중입니다.");
                 break;
             case R.id.set_exit:
                 showToast("준비중입니다.");

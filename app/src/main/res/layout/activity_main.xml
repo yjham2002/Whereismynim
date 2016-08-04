@@ -152,15 +152,18 @@
                                     android:textSize="23dp"
                                     android:textIsSelectable="false" />
 
-                                <TextView
+                                <android.support.v7.widget.AppCompatButton
+                                    style="@style/Widget.AppCompat.Button.Borderless"
+                                    android:id="@+id/bt_chat"
+                                    android:background="?selectableItemBackgroundBorderless"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="네트워크를 통해 계산된 위치로, \n실제 위치와 차이가 날 수 있습니다."
-                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center_horizontal"
                                     android:layout_marginTop="15dp"
                                     android:textColor="@color/white"
-                                    android:gravity="center_horizontal"
-                                    android:textSize="@dimen/default_text" />
+                                    android:text="메세지"
+                                    android:layout_gravity="center_horizontal" />
+
                             </LinearLayout>
 
                         </FrameLayout>

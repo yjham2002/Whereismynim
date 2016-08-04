@@ -46,6 +46,7 @@
         <activity android:name=".VerifyActivity" />
         <activity android:name=".RequestActivity" />
         <activity android:name=".RuleActivity" />
+        <activity android:name=".ChatActivity" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/MapKey" />

@@ -17,4 +17,7 @@
     <dimen name="profile">250dp</dimen>
     <dimen name="profile_margin">30dp</dimen>
     <dimen name="map_overlap">50dp</dimen>
+    <dimen name="actionbar_dimen">56dp</dimen>
+    <dimen name="actionbar_dimen_w">56dp</dimen>
+
 </resources>
