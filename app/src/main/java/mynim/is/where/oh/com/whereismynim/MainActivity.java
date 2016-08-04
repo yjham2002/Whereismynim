@@ -201,8 +201,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 } finally {
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(nowYou, 15));
                     map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-                    distance = MapUtils.distBetween(now, nowYou);
-                    distanceStat.setText(Double.toString(MapUtils.distBetween(now, nowYou)) + "km");
+                    distance = util.MapUtils.distBetween(now, nowYou);
+                    distanceStat.setText(Double.toString(distance) + "km");
                 }
 
             }

@@ -1,4 +1,4 @@
-package mynim.is.where.oh.com.whereismynim;
+package util;
 
         import javax.crypto.BadPaddingException;
         import javax.crypto.Cipher;
@@ -22,6 +22,7 @@ public class AES256Cipher {
     public AES256Cipher(String s){
         secretKey = s;
         IV = secretKey.substring(0,16);
+
     }
 
     public String fillText(String key){
@@ -31,7 +32,7 @@ public class AES256Cipher {
         return temp.toString();
     }
 
-    // text.setText(new AES256Cipher(fillText("암호")).AES_Encode("내용"));
+    // new util.AES256Cipher(fillText("암호")).AES_Encode("내용");
 
     public String AES_Encode(String str) throws java.io.UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
         byte[] keyData = secretKey.getBytes();

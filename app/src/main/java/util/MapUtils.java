@@ -1,4 +1,4 @@
-package mynim.is.where.oh.com.whereismynim;
+package util;
 
 import com.google.android.gms.maps.model.LatLng;
 
