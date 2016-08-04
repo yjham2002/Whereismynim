@@ -2,6 +2,7 @@ package mynim.is.where.oh.com.whereismynim;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -259,6 +260,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         prefEditor.putInt("auto_login", 1);
         prefEditor.commit();
 
+        NotificationManager nMgr = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancel(MyGcmListenerService.MSG_CHT);
+        nMgr.cancel(MyGcmListenerService.MSG_DEF);
+
         circlepic = (ImageView)findViewById(R.id.profile_pic);
         circlepic.setOnClickListener(this);
 
@@ -307,8 +312,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         animset.addAnimation(anim1);
 
         updateLoc();
-
-        MainActivity.isRun = true;
 
         AdView mAdView = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("FE4EB46DF11F124494E4B402287CE845").build();
@@ -435,6 +438,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
+        MainActivity.isRun = true;
         final SharedPreferences prefs = getSharedPreferences("WMN_PREF", MODE_PRIVATE);
         if(prefs.getBoolean("alarm", true)){
             //onAlarmStop();

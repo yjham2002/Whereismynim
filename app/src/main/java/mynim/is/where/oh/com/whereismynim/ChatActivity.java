@@ -97,6 +97,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         MainActivity.isRun = true;
         NotificationManager nMgr = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         nMgr.cancel(MyGcmListenerService.MSG_CHT);
+        nMgr.cancel(MyGcmListenerService.MSG_DEF);
 
         msg = (EditText)findViewById(R.id.msg);
         title = (TextView)findViewById(R.id.title);

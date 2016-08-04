@@ -154,7 +154,7 @@ public class MyGcmListenerService extends GcmListenerService {
     private void insertData(int from, int to, String msg){
         database.beginTransaction();
         try{
-            String sql = "insert into WMN_CHAT(`from`, `to`, `msg`, `date`, read) values (" + from + ", " + to + ", '" + msg + "', datetime('now') ," + 0 + ");";
+            String sql = "insert into WMN_CHAT(`from`, `to`, `msg`, `date`, read) values (" + from + ", " + to + ", '" + msg + "', datetime('now', 'localtime') ," + 0 + ");";
             database.execSQL(sql);
             database.setTransactionSuccessful();
         }catch(Exception e){
