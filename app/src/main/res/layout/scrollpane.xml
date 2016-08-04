@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="계정"
+            android:text="정보"
             android:textColor="@color/jet"
             android:textSize="@dimen/default_text_large" />
     </LinearLayout>
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/dark"
         android:textSize="@dimen/default_text_mid"
-        android:text="개인정보 수정"
+        android:text="버전 코드 : "
         android:gravity="left|center_vertical"
         />
     <android.support.v7.widget.AppCompatButton
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/dark"
         android:textSize="@dimen/default_text_mid"
-        android:text="회원탈퇴"
+        android:text="버전 네임 : "
         android:gravity="left|center_vertical"
         />
     <LinearLayout

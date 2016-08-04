@@ -152,16 +152,15 @@
                                     android:textSize="23dp"
                                     android:textIsSelectable="false" />
 
-                                <android.support.v7.widget.AppCompatButton
+                                <ImageView
                                     style="@style/Widget.AppCompat.Button.Borderless"
                                     android:id="@+id/bt_chat"
                                     android:background="?selectableItemBackgroundBorderless"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:layout_marginTop="15dp"
-                                    android:textColor="@color/white"
-                                    android:text="메세지"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:clickable="true"
+                                    android:layout_marginTop="30dp"
+                                    android:src="@drawable/ic_msg"
                                     android:layout_gravity="center_horizontal" />
 
                             </LinearLayout>

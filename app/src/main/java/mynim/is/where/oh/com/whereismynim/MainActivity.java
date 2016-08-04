@@ -78,9 +78,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public static ArrayList<LocationInfo> partLoc;
 
     private TextView user_name_pane, user_id_pane, current_pane, Couple_me, Couple_you, batStatus, distanceStat;
-    private ImageView refresh, profile, director,circlepic;
+    private ImageView refresh, profile, director,circlepic, bt_chat;
     private FrameLayout titlebar, parentView;
-    private Button bt_profile, bt_setting, bt_logout, bt_mag, bt_chat;
+    private Button bt_profile, bt_setting, bt_logout, bt_mag;
 
     // SCROLL VIEW RELATED DEC START
     private LinearLayout scroller;
@@ -274,12 +274,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         profile = (ImageView)findViewById(R.id.profile);
         director = (ImageView)findViewById(R.id.dirin);
         batStatus = (TextView)findViewById(R.id.batStatus);
+        bt_chat = (ImageView)findViewById(R.id.bt_chat);
 
         bt_profile = (Button)findViewById(R.id.bt_profile);
         bt_setting = (Button)findViewById(R.id.bt_setting);
         bt_logout = (Button)findViewById(R.id.bt_logout);
         bt_mag = (Button)findViewById(R.id.bt_magnify);
-        bt_chat = (Button)findViewById(R.id.bt_chat);
 
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
@@ -307,6 +307,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         animset.addAnimation(anim1);
 
         updateLoc();
+
+        MainActivity.isRun = true;
 
         AdView mAdView = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("FE4EB46DF11F124494E4B402287CE845").build();
@@ -440,6 +442,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         }
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("LOC_UP"));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("BAT_UP_R"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("WMN_CHAT_EVENT"));
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -449,6 +452,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 updateLoc();
             }else if(intent.getAction().equals("BAT_UP_R")){
                 batStatus.setText("상대방 배터리 잔여량 : " + intent.getExtras().getString("batStatus", "Unknown") + "%");
+            }else if(intent.getAction().equals("WMN_CHAT_EVENT")){
+                showToast("메세지가 도착했습니다");
             }
         }
     };
@@ -457,6 +462,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onPause() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        MainActivity.isRun = false;
     }
 
 }

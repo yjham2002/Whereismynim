@@ -1,6 +1,7 @@
 package mynim.is.where.oh.com.whereismynim;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -30,7 +31,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.set_modi:
-                showToast("준비중입니다.");
                 break;
             case R.id.set_noti:
                 prefEditor.putBoolean("notiacc", set_noti.isChecked());
@@ -48,7 +48,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 showToast("준비중입니다.");
                 break;
             case R.id.set_exit:
-                showToast("준비중입니다.");
                 break;
             case R.id.bt_exit:
                 finish();
@@ -90,6 +89,17 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         set_auto.setOnClickListener(this);
         set_acc.setOnClickListener(this);
         set_noti.setOnClickListener(this);
+
+        String vername = "오류";
+        String vercode = "오류";
+        try {
+            PackageInfo pinfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            vername = pinfo.versionName;
+            vercode = Integer.toString(pinfo.versionCode);
+        }catch(Exception e){}
+
+        set_modi.setText("버전 코드 : " + vercode);
+        set_exit.setText("버전 네임 : " + vername);
 
         new SizeS().execute();
     }
