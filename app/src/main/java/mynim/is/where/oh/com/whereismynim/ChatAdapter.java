@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,14 +32,14 @@ public class ChatAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItem(boolean byme, int idx, int isSent, String msg, String date, int caller){
+    public void addItem(int id, int from, int to, String msg, String date, int read){
         ChatItems addInfo = new ChatItems();
-        addInfo.byme = byme;
-        addInfo.isSent = isSent;
+        addInfo.id = id;
+        addInfo.from = from;
+        addInfo.to = to;
         addInfo.msg = msg;
         addInfo.date = date;
-        addInfo.caller = caller;
-        addInfo.idx = idx;
+        addInfo.read = read;
         mListData.add(addInfo);
     }
 
@@ -54,7 +55,7 @@ public class ChatAdapter extends BaseAdapter {
         holder = new ViewHolder();
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if(mData.byme) convertView = inflater.inflate(R.layout.chatbox_me, null);
+        if(mData.from == MainActivity.user_key) convertView = inflater.inflate(R.layout.chatbox_me, null);
         else convertView = inflater.inflate(R.layout.chatbox_you, null);
 
         holder.mText = (TextView) convertView.findViewById(R.id.mText);

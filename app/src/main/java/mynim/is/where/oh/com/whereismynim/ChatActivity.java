@@ -36,8 +36,15 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private SQLiteDatabase database;
-    private String dbName = "Whereismynim";
-    private String createTable = "create table chatList (byme integer, idx integer, isSent integer, msg text, date text, caller integer, myname integer);";
+    private String dbName = "WMN_DB";
+    private String createTable =
+            "create table if not exists WMN_CHAT(" +
+            "`id` integer primary key autoincrement, " +
+            "`from` integer, " +
+            "`to` integer, " +
+            "`msg` text, " +
+            "`date` datetime, " +
+            "`read` integer);";
 
     public void createDatabase(){
         database = openOrCreateDatabase(dbName, android.content.Context.MODE_PRIVATE, null);
@@ -51,13 +58,10 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    private void insertData(boolean byme, int idx, int isSent, String msg, String date, int caller, int myname){
-        String sqla = "select MAX(idx) from chatList";
-        int idxnum = (int)database.compileStatement("select max(idx) FROM chatList").simpleQueryForLong();
+    private void insertData(int from, int to, String msg){
         database.beginTransaction();
-        int by = byme ? 1 : 0;
         try{
-            String sql = "insert into chatList values ("+ by +", " + (++idxnum) + ", "+ isSent + ", '" + msg + "', '"+ date +"' ,'" + caller + "', '"+ myname +"');";
+            String sql = "insert into WMN_CHAT(`from`, `to`, `msg`, `date`, read) values (" + from + ", " + to + ", '" + msg + "', datetime('now') ," + 0 + ");";
             database.execSQL(sql);
             database.setTransactionSuccessful();
         }catch(Exception e){
@@ -68,29 +72,16 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
     }
 
     public void selectData(){
-        String sql = "select * from chatList where caller = " + MainActivity.part_key + " and myname = "+ MainActivity.user_key +" order by idx asc";
+        String sql = "select * from WMN_CHAT where `from` = " + MainActivity.user_key + " OR `to` = "+ MainActivity.user_key +" order by `id` asc";
         Cursor result = database.rawQuery(sql, null);
         result.moveToFirst();
         cAdapter.mListData.clear();
         while(!result.isAfterLast()){
-            cAdapter.addItem(result.getString(0).charAt(0)-'0'==1, Integer.parseInt(result.getString(1)), result.getString(2).charAt(0)-'0',result.getString(3), result.getString(4), Integer.parseInt(result.getString(5)));
+            cAdapter.addItem(result.getInt(0), result.getInt(1), result.getInt(2), result.getString(3), result.getString(4), result.getInt(5));
             result.moveToNext();
         }
         cAdapter.dataChange();
         result.close();
-    }
-
-    public void dropTable(){
-        database.beginTransaction();
-        try{
-            String sql = "drop table chatList";
-            database.execSQL(sql);
-            database.setTransactionSuccessful();
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            database.endTransaction();
-        }
     }
 
     @Override
@@ -99,11 +90,13 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.activity_article);
         View root = findViewById(R.id.rootLay);
         root.requestFocus();
+
         createDatabase();
         createTable();
+
         MainActivity.isRun = true;
         NotificationManager nMgr = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancel(2014112021);
+        nMgr.cancel(MyGcmListenerService.MSG_CHT);
 
         msg = (EditText)findViewById(R.id.msg);
         title = (TextView)findViewById(R.id.title);
@@ -124,8 +117,9 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
 
         chat.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                int position = cAdapter.mListData.get(arg2).idx;
-                final String sql = "delete from chatList where idx = " + position;
+                int position = cAdapter.mListData.get(arg2).id;
+                final String sql = "delete from WMN_CHAT where `id` = " + position;
+                showToast("메세지 삭제됨");
                 database.execSQL(sql);
                 selectData();
                 return false;
@@ -141,17 +135,15 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
               //  finish();
                 //break;
             case R.id.send:
-                if(msg.getText().length()<=0) break;
-                else {
-                    Calendar cal = Calendar.getInstance();
-                    String dateSet = Integer.toString(cal.get(Calendar.YEAR))+"-"+Integer.toString(cal.get(Calendar.MONTH)+1)+"-"+
-                            Integer.toString(cal.get(Calendar.DAY_OF_MONTH))+" "+Integer.toString(cal.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(cal.get(Calendar.MINUTE))+":"+Integer.toString(cal.get(Calendar.SECOND));
-                    insertData(true, 0, 0, msg.getText().toString(), dateSet, MainActivity.part_key, MainActivity.user_key);
+                if(msg.getText().length() > 0) {
+                    insertData(MainActivity.user_key, MainActivity.part_key, msg.getText().toString());
                     selectData();
                     HashMap<String, String> data = new HashMap<>();
                     data.put("id", Integer.toString(MainActivity.part_key));
                     data.put("title", "MSG_CALL");
                     data.put("message", msg.getText().toString());
+                    data.put("froma", Integer.toString(MainActivity.user_key));
+                    data.put("toa", Integer.toString(MainActivity.part_key));
                     new Communicator().postHttp(AddInfo.URL_SEND, data, new Handler() {
                         @Override
                         public void handleMessage(Message msg) {
@@ -174,7 +166,6 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         @Override
         public void onReceive(Context context, Intent intent) {
             selectData();
-
         }
     };
     @Override

@@ -34,16 +34,25 @@ import java.util.HashMap;
 
 public class MyGcmListenerService extends GcmListenerService {
 
-    private static int MSG_DEF = 2016010132, MSG_CHT = 201701920;
+    public static int MSG_DEF = 2016010132, MSG_CHT = 201701920;
     private static String batStatus = "Unknown";
     private static final String TAG = "MyGcmListenerService";
 
     private SQLiteDatabase database;
-    private String dbName = "Whereismynim";
-    private String createTable = "create table chatList (byme integer, idx integer, isSent integer, msg text, date text, caller integer, myname integer);";
+    private String dbName = "WMN_DB";
+    private String createTable =
+            "create table if not exists WMN_CHAT(" +
+                    "`id` integer primary key autoincrement, " +
+                    "`from` integer, " +
+                    "`to` integer, " +
+                    "`msg` text, " +
+                    "`date` datetime, " +
+                    "`read` integer);";
 
-    private void sendMessage() {
+    private void sendMessage(int from, int to) {
         Intent intent = new Intent("WMN_CHAT_EVENT");
+        intent.putExtra("froma", from);
+        intent.putExtra("toa", to);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
@@ -103,12 +112,9 @@ public class MyGcmListenerService extends GcmListenerService {
         }else if(data.getString("title").equals("MSG_CALL")) {
             createDatabase();
             createTable();
-            Calendar cal = Calendar.getInstance();
-            String dateSet = Integer.toString(cal.get(Calendar.YEAR))+"-"+Integer.toString(cal.get(Calendar.MONTH)+1)+"-"+Integer.toString(cal.get(Calendar.DAY_OF_MONTH))+" "+Integer.toString(cal.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(cal.get(Calendar.MINUTE))+":"+Integer.toString(cal.get(Calendar.SECOND));
-            insertData(false, 0, 0, data.getString("message"), dateSet, prefs.getInt("user_key", 0), prefs.getInt("part_key", 0));
-
-            if(MainActivity.isRun != true) sendNotification("내님은 어디에", "메세지가 도착했습니다.", MSG_CHT);
-            sendMessage();
+            insertData(Integer.parseInt(data.getString("froma").trim()), Integer.parseInt(data.getString("toa").trim()), data.getString("message"));
+            if(MainActivity.isRun != true) sendNotification("내님은 어디에", "메세지가 도착했습니다", MSG_CHT);
+            sendMessage(Integer.parseInt(data.getString("froma").trim()), Integer.parseInt(data.getString("toa").trim()));
 
         }else sendNotification(data.getString("title"), data.getString("message"), MSG_DEF);
     }
@@ -145,13 +151,10 @@ public class MyGcmListenerService extends GcmListenerService {
         }
     }
 
-    private void insertData(boolean byme, int idx, int isSent, String msg, String date, int caller, int myname){
-        String sqla = "select MAX(idx) from chatList";
-        int idxnum = (int)database.compileStatement("select max(idx) FROM chatList").simpleQueryForLong();
+    private void insertData(int from, int to, String msg){
         database.beginTransaction();
-        int by = byme ? 1 : 0;
         try{
-            String sql = "insert into chatList values ("+ by +", " + (++idxnum) + ", "+ isSent + ", '" + msg + "', '"+ date +"' ,'" + caller + "', '"+ myname +"');";
+            String sql = "insert into WMN_CHAT(`from`, `to`, `msg`, `date`, read) values (" + from + ", " + to + ", '" + msg + "', datetime('now') ," + 0 + ");";
             database.execSQL(sql);
             database.setTransactionSuccessful();
         }catch(Exception e){
