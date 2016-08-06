@@ -220,7 +220,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         LocationService loc = LocationService.getLocationManager(this);
         now = new LatLng(loc.latitude, loc.longitude);
         if(now.latitude == 0.0 && now.longitude == 0.0){
-            showToast("상대방의 위치 정보를 불러오는 중 오류가 발생하였습니다.");
+            showToast("상대방의 GPS가 꺼져있거나 권한에 동의하지 않았습니다");
             return;
         }
         nowMark = map.addMarker(new MarkerOptions().position(now).title("현 위치"));

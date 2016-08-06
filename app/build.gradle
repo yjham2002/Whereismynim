@@ -8,8 +8,8 @@ android {
         applicationId "mynim.is.where.oh.com.whereismynim"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 5
-        versionName "SummerVacation"
+        versionCode 6
+        versionName "SummerVacation01"
     }
     buildTypes {
         release {

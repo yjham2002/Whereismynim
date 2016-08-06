@@ -22,13 +22,8 @@ import static android.graphics.PixelFormat.TRANSLUCENT;
 import static android.support.v4.widget.DrawerLayout.DrawerListener;
 import static java.lang.Math.sqrt;
 
-/** A drawable that rotates between a drawer icon and a back arrow based on parameter. */
 public class DrawerArrowDrawable extends Drawable {
 
-    /**
-     * Joins two {@link Path}s as if they were one where the first 50% of the path is {@code
-     * PathFirst} and the second 50% of the path is {@code pathSecond}.
-     */
     private static class JoinedPath {
 
         private final PathMeasure measureFirst;
@@ -43,13 +38,6 @@ public class DrawerArrowDrawable extends Drawable {
             lengthSecond = measureSecond.getLength();
         }
 
-        /**
-         * Returns a point on this curve at the given {@code parameter}.
-         * For {@code parameter} values less than .5f, the first path will drive the point.
-         * For {@code parameter} values greater than .5f, the second path will drive the point.
-         * For {@code parameter} equal to .5f, the point will be the point where the two
-         * internal paths connect.
-         */
         private void getPointOnLine(float parameter, float[] coords) {
             if (parameter <= .5f) {
                 parameter *= 2;
@@ -62,7 +50,6 @@ public class DrawerArrowDrawable extends Drawable {
         }
     }
 
-    /** Draws a line between two {@link JoinedPath}s at distance {@code parameter} along each path. */
     private class BridgingLine {
 
         private final JoinedPath pathA;
@@ -73,10 +60,6 @@ public class DrawerArrowDrawable extends Drawable {
             this.pathB = pathB;
         }
 
-        /**
-         * Draw a line between the points defined on the paths backing {@code measureA} and
-         * {@code measureB} at the current parameter.
-         */
         private void draw(Canvas canvas) {
             pathA.getPointOnLine(parameter, coordsA);
             pathB.getPointOnLine(parameter, coordsB);
@@ -84,10 +67,6 @@ public class DrawerArrowDrawable extends Drawable {
             canvas.drawLine(coordsA[0], coordsA[1], coordsB[0], coordsB[1], linePaint);
         }
 
-        /**
-         * Insets the end points of the current line to account for the protruding
-         * ends drawn for {@link Cap#ROUND} style lines.
-         */
         private void insetPointsForRoundCaps() {
             vX = coordsB[0] - coordsA[0];
             vY = coordsB[1] - coordsA[1];
@@ -103,16 +82,10 @@ public class DrawerArrowDrawable extends Drawable {
         }
     }
 
-    /** Paths were generated at a 3px/dp density; this is the scale factor for different densities. */
     private final static float PATH_GEN_DENSITY = 3;
 
-    /** Paths were generated with at this size for {@link DrawerArrowDrawable#PATH_GEN_DENSITY}. */
     private final static float DIMEN_DP = 23.5f;
 
-    /**
-     * Paths were generated targeting this stroke width to form the arrowhead properly, modification
-     * may cause the arrow to not for nicely.
-     */
     private final static float STROKE_WIDTH_DP = 2;
 
     private BridgingLine topLine;
@@ -261,10 +234,6 @@ public class DrawerArrowDrawable extends Drawable {
         invalidateSelf();
     }
 
-    /**
-     * Sets the rotation of this drawable based on {@code parameter} between 0 and 1. Usually driven
-     * via {@link DrawerListener#onDrawerSlide(View, float)}'s {@code slideOffset} parameter.
-     */
     public void setParameter(float parameter) {
         if (parameter > 1 || parameter < 0) {
             throw new IllegalArgumentException("Value must be between 1 and zero inclusive!");
@@ -273,19 +242,11 @@ public class DrawerArrowDrawable extends Drawable {
         invalidateSelf();
     }
 
-    /**
-     * When false, rotates from 3 o'clock to 9 o'clock between a drawer icon and a back arrow.
-     * When true, rotates from 9 o'clock to 3 o'clock between a back arrow and a drawer icon.
-     */
     public void setFlip(boolean flip) {
         this.flip = flip;
         invalidateSelf();
     }
 
-    /**
-     * Scales the paths to the given screen density. If the density matches the
-     * {@link DrawerArrowDrawable#PATH_GEN_DENSITY}, no scaling needs to be done.
-     */
     private static void scalePath(Path path, float density) {
         if (density == PATH_GEN_DENSITY) return;
         Matrix scaleMatrix = new Matrix();

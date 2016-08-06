@@ -6,6 +6,7 @@
     <string name="geofence">현재 위치 기준으로 지오펜스 설정</string>
     <string name="reqMessage">앱 설치하기 (http://test.co.kr)</string>
     <string name="banner_ad_unit_id">ca-app-pub-8943333249977907/4526810275</string>
+    <string name="verify">abcdefghijklmnop1234567890</string>
     <string name="gcm_defaultSenderId">522067342670</string>
     <string name="reqer_info">상대방의 수락을 기다리고 있습니다.\n상대방이 거절할 경우, 요청이 자동으로 삭제됩니다.\n연결 성립 시, 상대방은 위치 정보를 강제로 취득할 수 있으며,\n주기적으로 위치정보가 기록될 수 있습니다.</string>
     <string name="req_info">귀하에게 요청된 연결을 확인하세요.\n수락 시 위치정보 제공에 동의하는 것으로 간주됩니다.\n상대방은 위치 정보를 강제로 취득할 수 있으며,\n주기적으로 위치정보가 기록될 수 있습니다.</string>
